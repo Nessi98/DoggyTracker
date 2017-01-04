@@ -19,6 +19,6 @@
 	<classpathentry kind="con" path="org.eclipse.buildship.core.gradleclasspathcontainer"/>
 	<classpathentry kind="lib" path="/home/nessy/lib/mysql-connector-java-5.1.40-bin.jar"/>
 	<classpathentry kind="lib" path="/home/nessy/lib/org.springframework.transaction.jar"/>
-	<classpathentry kind="lib" path="/home/nessy/lib/org.springframework.jdbc.jar"/>
+	<classpathentry kind="lib" path="/home/nessy/lib/spring-jdbc-4.3.5.RELEASE.jar" sourcepath="/home/nessy/.m2/repository/org/springframework/spring-jdbc/4.3.5.RELEASE/spring-jdbc-4.3.5.RELEASE-sources.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
