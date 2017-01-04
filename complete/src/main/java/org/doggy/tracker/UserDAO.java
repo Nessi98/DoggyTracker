@@ -19,7 +19,7 @@ public interface UserDAO {
 	    * a record from the Student table corresponding
 	    * to a passed student id.
 	    */
-	   public User getUser(Integer userId);
+	   public User getUser(Integer id);
 	   /** 
 	    * This is the method to be used to list down
 	    * all the records from the Student table.
@@ -30,10 +30,10 @@ public interface UserDAO {
 	    * a record from the Student table corresponding
 	    * to a passed student id.
 	    */
-	   public void delete(Integer userId);
+	   public void delete(Integer id);
 	   /** 
 	    * This is the method to be used to update
 	    * a record into the Student table.
 	    */
-	   public void update(Integer userId, String name);
+	   public void update(Integer id, String name);
 }

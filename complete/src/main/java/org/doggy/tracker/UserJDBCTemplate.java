@@ -15,7 +15,7 @@ public class UserJDBCTemplate implements UserDAO {
    }
 
    public void create(String name, String email, String password) {
-      String SQL = "insert into User (name, password, email) values (?, ?, ?)";
+      String SQL = "insert into Users (name, email, password) values (?, ?, ?)";
       
       jdbcTemplateObject.update( SQL, name, password, email);
       //System.out.println("Created Record Name = " + name + " Age = " + age);
@@ -23,16 +23,15 @@ public class UserJDBCTemplate implements UserDAO {
    }
 
    public User getUser(Integer id) {
-      String SQL = "select * from User where id = ?";
+      String SQL = "select * from Users where id = ?";
       User user = jdbcTemplateObject.queryForObject(SQL, 
                         new Object[]{id}, new UserMapper());
       return user;
    }
 
    public List<User> listUsers() {
-      String SQL = "select * from Student";
-      List <User> users = jdbcTemplateObject.query(SQL, 
-                                new UserMapper());
+      String SQL = "select * from Users";
+      List <User> users = jdbcTemplateObject.query(SQL, new UserMapper());
       return users;
    }
 
@@ -43,10 +42,10 @@ public class UserJDBCTemplate implements UserDAO {
       return;
    }
 
-   public void update(Integer userId, String name){
-      String SQL = "update Student set age = ? where id = ?";
-      jdbcTemplateObject.update(SQL, name, userId);
-      System.out.println("Updated Record with ID = " + userId );
+   public void update(Integer id, String name){
+      String SQL = "update Users set email = ? where id = ?";
+      jdbcTemplateObject.update(SQL, name, id);
+      System.out.println("Updated Record with ID = " + id );
       return;
    }
 

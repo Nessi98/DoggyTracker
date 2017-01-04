@@ -2,17 +2,17 @@ package org.doggy.tracker;
 
 public class User {
 	
-	private int userId;
+	private int id;
 	private String name;
 	private String password;
 	private String email;
 	
 	public int getUserId() {
-		return userId;
+		return id;
 	}
 
-	public void setUserId(int userId) {
-		this.userId = userId;
+	public void setid(int userId) {
+		this.id = userId;
 	}
 	
 	public String getName() {
