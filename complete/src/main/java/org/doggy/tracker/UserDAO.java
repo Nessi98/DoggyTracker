@@ -8,7 +8,7 @@ public interface UserDAO {
 	    * This is the method to be used to initialize
 	    * database resources ie. connection.
 	    */
-	   public void setDataSource(DataSource ds);
+	   public void setDataSource(DataSource dataSource);
 	   /** 
 	    * This is the method to be used to create
 	    * a record in the Student table.

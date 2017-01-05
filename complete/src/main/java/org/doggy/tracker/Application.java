@@ -13,11 +13,9 @@ public class Application {
     public static void main(String[] args) {
         SpringApplication.run(Application.class, args);
         
-        ApplicationContext context = 
-                new ClassPathXmlApplicationContext("Beans.xml");
+        ApplicationContext context = new ClassPathXmlApplicationContext("Beans.xml");
 
-         UserJDBCTemplate userJDBCTemplate = 
-         (UserJDBCTemplate)context.getBean("userJDBCTemplate");
+         UserJDBCTemplate userJDBCTemplate = (UserJDBCTemplate)context.getBean("userJDBCTemplate");
          
          System.out.println("------Records Creation--------" );
          userJDBCTemplate.create("Zara", "zara@gmail.com", "hello123");
@@ -31,6 +29,8 @@ public class Application {
             System.out.print(", Name : " + record.getName() );
             System.out.println(", email : " + record.getEmail());
          }
+         
+         userJDBCTemplate.update(2, "fvg");
     }
 
 }
