@@ -20,7 +20,7 @@ public class Application {
          System.out.println("------Records Creation--------" );
          userJDBCTemplate.create("Zara", "zara@gmail.com", "hello123");
          userJDBCTemplate.create("Nuha", "Nuha@gmail.com", "123");
-         userJDBCTemplate.create("Ayan", "Ayan@gmai.com", "123123");
+         userJDBCTemplate.create("Ayan", "Ayan@gmai.com", "asdsfsfsdf");
 
          System.out.println("------Listing Multiple Records--------" );
          List<User> users = userJDBCTemplate.listUsers();
@@ -30,7 +30,7 @@ public class Application {
             System.out.println(", email : " + record.getEmail());
          }
          
-         userJDBCTemplate.update(2, "fvg");
+         userJDBCTemplate.update(9, "fvg");
     }
 
 }

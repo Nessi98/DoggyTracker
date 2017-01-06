@@ -18,5 +18,10 @@
       class="org.doggy.tracker.UserJDBCTemplate">
       <property name="dataSource"  ref="dataSource" />    
    </bean>
+   
+	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+      <property name="prefix" value="/src/main/resources/templates/jsp/" />
+      <property name="suffix" value=".jsp" />
+   </bean>
       
 </beans>
