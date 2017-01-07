@@ -19,9 +19,16 @@
       <property name="dataSource"  ref="dataSource" />    
    </bean>
    
-	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-      <property name="prefix" value="/src/main/resources/templates/jsp/" />
-      <property name="suffix" value=".jsp" />
+   <!-- Definition for deviceReportJDBCTemplate bean -->
+   <bean id="deviceReportJDBCTemplate" 
+      class="org.doggy.tracker.DeviceReportJDBCTemplate">
+      <property name="dataSource"  ref="dataSource" />    
+   </bean>
+   
+      <!-- Definition for deviceJDBCTemplate bean -->
+   <bean id="deviceJDBCTemplate" 
+      class="org.doggy.tracker.DeviceJDBCTemplate">
+      <property name="dataSource"  ref="dataSource" />    
    </bean>
       
 </beans>

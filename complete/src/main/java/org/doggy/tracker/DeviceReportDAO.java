@@ -1,30 +1,28 @@
 package org.doggy.tracker;
 
 import java.util.List;
+
 import javax.sql.DataSource;
 
-public interface UserDAO {
-	/** 
-	    * This is the method to be used to initialize
-	    * database resources ie. connection.
-	    */
+public interface DeviceReportDAO {
+	
 	   public void setDataSource(DataSource dataSource);
 	   /** 
 	    * This is the method to be used to create
 	    * a record in the User table.
 	    */
-	   public void create(String name, String email, String password);
+	   public void create(String latitude, String longitude, String deviceBattery);
 	   /** 
 	    * This is the method to be used to list down
 	    * a record from the User table corresponding
 	    * to a passed user id.
 	    */
-	   public User getUser(Integer id);
+	   public DeviceReport getDeviceReport(Integer id);
 	   /** 
 	    * This is the method to be used to list down
 	    * all the records from the Student table.
 	    */
-	   public List<User> listUsers();
+	   public List<DeviceReport> listDeviceReports();
 	   /** 
 	    * This is the method to be used to delete
 	    * a record from the Student table corresponding
@@ -35,5 +33,5 @@ public interface UserDAO {
 	    * This is the method to be used to update
 	    * a record into the Student table.
 	    */
-	   public void update(Integer id, String name);
+	   public void update(Integer id, String latitude, String longitude, String deviceBattery);
 }

@@ -2,10 +2,19 @@ package org.doggy.tracker;
 
 public class DeviceReport {
 	
+	private int id;
 	private String latitude;
 	private String longitude;
-	private String deviceBattery;
+	private String batteryLevel;
+	
+	public int getId() {
+		return id;
+	}
 
+	public void setId(int id) {
+		this.id = id;
+	}
+	
 	public String getLatitude() {
 		return latitude;
 	}
@@ -22,12 +31,12 @@ public class DeviceReport {
 		this.longitude = longitude;
 	}
 	
-	public String getDeviceBattery() {
-		return deviceBattery;
+	public String getBatteryLevel() {
+		return batteryLevel;
 	}
 
-	public void setDeviceBattery(String deviceBattery) {
-		this.deviceBattery = deviceBattery;
+	public void setBatteryLevel(String batteryLevel) {
+		this.batteryLevel = batteryLevel;
 	}
 	
 	/* public type getDeviceInfo(){

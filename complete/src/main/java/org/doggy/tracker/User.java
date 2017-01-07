@@ -1,11 +1,20 @@
 package org.doggy.tracker;
 
+import javax.validation.constraints.Size;
+import javax.validation.constraints.NotNull;
+
 public class User {
 	
 	private int id;
+    @NotNull
+    @Size(min=2, max=30)
 	private String name;
-	private String password;
+    @NotNull
+    @Size(min=2, max=30)
 	private String email;
+    @NotNull
+    @Size(min=2, max=30)
+	private String password;
 	
 	public int getUserId() {
 		return id;
@@ -38,6 +47,10 @@ public class User {
 	public void setEmail(String email) {
 		this.email = email;
 	}
+	
+    public String toString() {
+        return "Person(Name: " + this.name + ", Email: " + this.email + ", Password: " + this.password + ")"; 
+    }
 	
 	public String changeName(String newName){
 		this.name = newName;

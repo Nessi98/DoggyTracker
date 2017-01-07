@@ -3,22 +3,31 @@ package org.doggy.tracker;
 public class Device {
 	
 	private int id;
+	private int userId;
 	private String code;
 	private String activationKey;
 	
-	public int getid() {
+	public int getId() {
 		return id;
 	}
 	
-	public void sed(int id) {
+	public void setId(int id) {
 		this.id = id;
+	}
+	
+	public int getUserId() {
+		return userId;
+	}
+
+	public void setUserId(int userId) {
+		this.userId = userId;
 	}
 	
 	public String getCode() {
 		return code;
 	}
 	
-	public void setName(String code) {
+	public void setCode(String code) {
 		this.code = code;
 	}
 	
