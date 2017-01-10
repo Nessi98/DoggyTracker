@@ -23,11 +23,6 @@ public class Application {
          DeviceJDBCTemplate deviceJDBCTemplate = (DeviceJDBCTemplate)context.getBean("deviceJDBCTemplate");
          DeviceReportJDBCTemplate deviceReportJDBCTemplate = (DeviceReportJDBCTemplate)context.getBean("deviceReportJDBCTemplate");
          
-         deviceJDBCTemplate.create(12, "1999828", "SSH12AB45");
-
-         deviceReportJDBCTemplate.create("12.12", "12.12", "78%");
-         deviceReportJDBCTemplate.create("75.34", "56.12", "8%");
-         
          System.out.println("------Listing Multiple Records--------" );
          List<User> users = userJDBCTemplate.listUsers();
          
