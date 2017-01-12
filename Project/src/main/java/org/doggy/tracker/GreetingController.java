@@ -1,19 +1,17 @@
 package org.doggy.tracker;
 
-// I will use this Greeting Controller to make my DeviceReportController
-
-import org.springframework.ui.Model;
-
-import java.util.List;
-
 import org.springframework.stereotype.Controller;
+
+// I will use this Greeting Controller to make my DeviceReportController
+import java.util.List;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class GreetingController {
 
-	@RequestMapping("/greeting")
+	@RequestMapping(value = "/greeting")
     public String greeting(@RequestParam(value = "User") String User,
             @RequestParam(value = "Pass") String pass,
             @RequestParam(value = "IMEI") String imei,
@@ -31,6 +29,8 @@ public class GreetingController {
 		lng = i + ((lng - i*100)/60);
 
 		model.addAttribute("lat", lat1);
+		model.addAttribute("lng", lng);
+		
         return "greeting";
     }
 
