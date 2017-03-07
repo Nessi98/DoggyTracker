@@ -29,11 +29,19 @@ public class DeviceJDBCTemplate implements DeviceDAO{
 		return;
 	}
 	
-	public List<Device> listDevice() {
+	public List<Device> listDevices() {
 		String SQL = "SELECT * FROM DeviceReport";
 		List <Device> device = jdbcTemplateObject.query(SQL, new DeviceMapper());
 		
 		return device;
+	}
+	
+	public void update(String imei, Integer userId, String name){
+		String SQL = "UPDATE Device SET userId = ? name = ? WHERE imei = ?";
+		jdbcTemplateObject.update(SQL, userId, name);
+		
+
+		return;
 	}
 
 	@Override
@@ -42,9 +50,4 @@ public class DeviceJDBCTemplate implements DeviceDAO{
 		return null;
 	}
 
-	@Override
-	public List<Device> listDevices() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 }

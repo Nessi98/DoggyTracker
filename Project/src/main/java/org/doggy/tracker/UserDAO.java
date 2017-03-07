@@ -13,13 +13,13 @@ public interface UserDAO {
 	    * This is the method to be used to create
 	    * a record in the User table.
 	    */
-	   public void create(String name, String email, String password);
+	   public void create(String firstName, String lastName, String email, String password);
 	   /** 
 	    * This is the method to be used to list down
 	    * a record from the User table corresponding
 	    * to a passed user id.
 	    */
-	   public User getUser(Integer id);
+	   public User getUser(String email);
 	   /** 
 	    * This is the method to be used to list down
 	    * all the records from the Student table.
@@ -35,5 +35,5 @@ public interface UserDAO {
 	    * This is the method to be used to update
 	    * a record into the Student table.
 	    */
-	   public void update(Integer id, String name);
+	   public void update(Integer id, String email);
 }

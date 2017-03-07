@@ -1,35 +1,30 @@
 package org.doggy.tracker;
 
-import javax.validation.constraints.Size;
 import javax.validation.constraints.NotNull;
 
 public class User {
 	
-	private int id;
-    @NotNull
-    @Size(min=2, max=30)
-	private String name;
-    @NotNull
-    @Size(min=2, max=30)
+	private String firstName;
+	private String lastName;
+	@NotNull
 	private String email;
-    @NotNull
-    @Size(min=2, max=30)
 	private String password;
 	
-	public int getUserId() {
-		return id;
-	}
-
-	public void setid(int userId) {
-		this.id = userId;
+	public User(){}
+	
+	public User(String firstName, String lastName, String email, String password){
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.email = email;
+		this.password = password;
 	}
 	
-	public String getName() {
-		return name;
+	public String getFirstName() {
+		return firstName;
 	}
 	
-	public void setName(String name) {
-		this.name = name;
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
 	}
 	
 	public String getPassword() {
@@ -47,16 +42,14 @@ public class User {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	
-    public String toString() {
-        return "Person(Name: " + this.name + ", Email: " + this.email + ", Password: " + this.password + ")"; 
-    }
-	
-	public String changeName(String newName){
-		this.name = newName;
-		
-		//update in the table 
-		return name;
+
+	public String getLastName() {
+		return lastName;
+	}
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
 	}
 
 }
+//	@NotEmpty(message = "Please enter your password.") @Size(min = 6, max = 15, message = "Your password must between 6 and 15 characters")

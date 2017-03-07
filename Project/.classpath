@@ -15,5 +15,9 @@
 	<classpathentry kind="lib" path="/home/nessy/lib/mysql-connector-java-5.1.40-bin.jar"/>
 	<classpathentry kind="lib" path="/home/nessy/lib/org.springframework.transaction.jar"/>
 	<classpathentry kind="lib" path="/home/nessy/lib/spring-jdbc-4.3.5.RELEASE.jar" sourcepath="/home/nessy/.m2/repository/org/springframework/spring-jdbc/4.3.5.RELEASE/spring-jdbc-4.3.5.RELEASE-sources.jar"/>
+	<classpathentry kind="lib" path="/home/nessy/lib/spring-security-core-4.2.1.RELEASE.jar"/>
+	<classpathentry kind="lib" path="/home/nessy/lib/commons-io-2.4.jar"/>
+	<classpathentry kind="lib" path="/home/nessy/lib/spring-security-config-4.2.1.RELEASE.jar"/>
+	<classpathentry kind="lib" path="/home/nessy/lib/org.springframework.security.web-3.0.0.RELEASE.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

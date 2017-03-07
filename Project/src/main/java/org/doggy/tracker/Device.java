@@ -2,18 +2,11 @@ package org.doggy.tracker;
 
 public class Device {
 	
-	private int id;
+
 	private int userId;
-	private String code;
+	private String imei;
+	private String name;
 	private String activationKey;
-	
-	public int getId() {
-		return id;
-	}
-	
-	public void setId(int id) {
-		this.id = id;
-	}
 	
 	public int getUserId() {
 		return userId;
@@ -21,14 +14,6 @@ public class Device {
 
 	public void setUserId(int userId) {
 		this.userId = userId;
-	}
-	
-	public String getCode() {
-		return code;
-	}
-	
-	public void setCode(String code) {
-		this.code = code;
 	}
 	
 	public String getActivationKey() {
@@ -39,9 +24,21 @@ public class Device {
 		this.activationKey = activationKey;
 	}
 	
-	public void setDevice(String activationKey, String code){
-		if(this.activationKey == activationKey && this.code == code ){
-			//add the device in the User list
-		}
+
+	public void setName(String name) {
+		this.name = name;
+		
+	}
+	
+	public String getName(){
+		return name;
+	}
+
+	public String getImei() {
+		return imei;
+	}
+
+	public void setImei(String imei) {
+		this.imei = imei;
 	}
 }

@@ -7,12 +7,11 @@ import org.doggy.tracker.DeviceReportJDBCTemplate;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.context.ApplicationContext;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 @SpringBootApplication
-@EnableAutoConfiguration
+//@EnableAutoConfiguration
 public class Application {
 
 	public static void main(String[] args) {
@@ -29,12 +28,11 @@ public class Application {
          List<User> users = userJDBCTemplate.listUsers();
          
          for (User record : users) {
-            System.out.print("ID : " + record.getUserId() );
-            System.out.print(", Name : " + record.getName() );
+            System.out.print("First Name : " + record.getFirstName());
+            System.out.print(",LastName : " + record.getLastName());
             System.out.println(", email : " + record.getEmail());
          }
          
-         userJDBCTemplate.update(9, "fvg");
     }
 
 }
