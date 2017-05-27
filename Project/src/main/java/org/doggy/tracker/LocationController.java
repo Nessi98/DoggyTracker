@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class LocationController {
 
 	@RequestMapping(method = RequestMethod.GET)
-    public String greeting(@RequestParam(value = "User") String User,
+    public String location(@RequestParam(value = "User") String User,
             @RequestParam(value = "Pass") String pass,
             @RequestParam(value = "IMEI") String imei,
             @RequestParam(value = "GPS") List<String> params, Model model){

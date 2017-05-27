@@ -1,0 +1,33 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:tiles="http://www.thymeleaf.org">
+  <head>
+    <title tiles:fragment="title">Messages : Create</title>
+  </head>
+  <body>
+    <div tiles:fragment="content">
+        <form name="addDevice" th:action="@{/registration}" method="post">               
+            <fieldset>
+                <legend>Add Device</legend>
+
+                <label for="imei">Device IMEI</label>
+                <input type="text" id="imei" name="imei"/>
+                  
+                <label for="activationKey">Activation Key</label>
+                <input type="text" id="activationKey" name="activationKey"/>
+   
+                <label for="name">Set name</label>
+                <input type="text" id="name" name="name"/>  
+                  
+                <div class="form-actions">
+                    <button type="submit" class="btn">Cancel</button>
+                </div> 
+                  
+                <div class="form-actions">
+                    <button type="submit" class="btn">Add Device</button>
+                </div>
+                
+            </fieldset>
+        </form>
+    </div>
+  </body>
+</html>

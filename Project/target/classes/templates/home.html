@@ -1,0 +1,82 @@
+<!DOCTYPE HTLM>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <title>Home Page</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <style>
+		
+/* Dropdown Button */
+.dropbtn {
+    background-color: grey;
+    color: white;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+}
+
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+/* Links inside the dropdown */
+.dropdown-content form {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content form:hover {background-color: #f1f1f1}
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+/* Change the background color of the dropdown button when the dropdown content is shown */
+.dropdown:hover .dropbtn {
+    background-color: #3e8e41;
+}
+	</style>
+</head>
+<body>
+	<h1 th:inline="text">Hello [[${#httpServletRequest.remoteUser}]]!</h1>
+	
+		<form method="get" action="/welcome">
+	    	<div><input  type="submit" value="Home"/></div>
+		</form>
+			
+		<form method="get" action="/addDevice">
+	    	<div><input type="submit" value="Add Device"/></div>
+		</form>
+		
+		<div class="dropdown">
+			  <button class="dropbtn">Settings</button>
+			  <div class="dropdown-content">
+			    		<form method="get" action="/viewProfile">
+	    					<div><input type="submit" value="View Profile"/></div>
+						</form>
+						<form method="get" action="/accountSettings">
+	    					<a href="accountSettings" type="submit" style="text-decoration:none;"> Acccount Settings </a>
+						</form>
+						<form th:action="@{/logout}" method="post">
+            				<input type="submit" value="Sign Out"/>
+       					</form>
+			  </div>
+		</div>
+	$body
+</body>
+</html>

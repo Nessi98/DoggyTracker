@@ -1,4 +1,4 @@
-package org.doggy.tracker;
+																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																															package org.doggy.tracker;
 
 import java.util.List;
 
@@ -33,15 +33,11 @@ public class LoginController {
 			if(email.equals(record.getEmail()) && password.equals(record.getPassword())){
 			    String firstName = record.getFirstName();
 			    String lastName = record.getLastName();
-			    /*try {
-			    	  httpServletRequest.login("user","password");
-			    	} catch(ServletException e) {
-			    	  // fail to authenticate
-			    	}*/
+
 				model.addAttribute("firstName", firstName);
 				model.addAttribute("lastName", lastName);
 				
-				return "welcome";
+				return "home";
 			}
 		}
         

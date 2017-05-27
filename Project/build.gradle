@@ -13,6 +13,11 @@ apply plugin: 'eclipse'
 apply plugin: 'org.springframework.boot'
 
 jar {
+    baseName = 'gs-securing-web'
+    version =  '0.1.0'
+}
+
+jar {
     baseName = 'gs-validating-form-input'
     version =  '0.1.0'
 }
@@ -22,10 +27,6 @@ jar {
     version =  '0.1.0'
 }
 
-jar {
-    baseName = 'gs-securing-web'
-    version =  '0.1.0'
-}
 
 repositories {
     mavenCentral()
@@ -42,16 +43,15 @@ dependencies {
     compile("org.apache.tomcat.embed:tomcat-embed-el")
     compile("org.springframework.boot:spring-boot-devtools")
     compile group: 'commons-io', name: 'commons-io', version: '2.4'
-    compile("org.springframework.boot:spring-boot-starter-security")
+
     compile("org.springframework.boot:spring-boot-starter-thymeleaf")
-    compile 'org.springframework.security:spring-security-web:4.0.1.RELEASE'
+
     compile group: 'org.springframework', name: 'spring-jdbc', version: '4.3.5.RELEASE'
     compile group: 'com.fasterxml.jackson.core', name: 'jackson-core', version: '2.9.0.pr1'
-    compile group: 'org.springframework.security', name: 'spring-security-core', version: '4.2.1.RELEASE'
-    compile group: 'org.springframework.security', name: 'spring-security-config', version: '4.2.1.RELEASE'
     
     testCompile("junit:junit")
     testCompile("org.springframework.boot:spring-boot-starter-test")
     testCompile("org.springframework.security:spring-security-test")
+
 }
 

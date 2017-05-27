@@ -55,8 +55,14 @@
 <body>
 	<h1 th:inline="text">Hello [[${#httpServletRequest.remoteUser}]]!</h1>
 	
-		<form method="get" action="/welcome">
+	<p>Click <a th:href="@{/addDevice}">here</a> to see a greeting.</p>
+	
+		<form method="get" action="/home">
 	    	<div><input  type="submit" value="Home"/></div>
+		</form>
+		
+		<form method="get" action="/location">
+	    	<div><input type="submit" value="Map"/></div>
 		</form>
 			
 		<form method="get" action="/addDevice">
