@@ -9,6 +9,7 @@ buildscript {
 }
 
 apply plugin: 'java'
+apply plugin: 'idea'
 apply plugin: 'eclipse'
 apply plugin: 'org.springframework.boot'
 
@@ -45,6 +46,7 @@ dependencies {
     compile group: 'commons-io', name: 'commons-io', version: '2.4'
 
     compile("org.springframework.boot:spring-boot-starter-thymeleaf")
+    compile("org.springframework.boot:spring-boot-starter-security")
 
     compile group: 'org.springframework', name: 'spring-jdbc', version: '4.3.5.RELEASE'
     compile group: 'com.fasterxml.jackson.core', name: 'jackson-core', version: '2.9.0.pr1'

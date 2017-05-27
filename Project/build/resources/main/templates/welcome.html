@@ -3,36 +3,49 @@
 	<head>
 		<meta name="viewport" content="initial-scale=1.0, user-scalable=no"/>
 	    <meta charset="utf-8"/>
+	    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Lobster"/>
 	    <title>Welcome</title>
 	    <style>
 	      /* Always set the map height explicitly to define the size of the div
 	       * element that contains the map. */
 	      #map {
-	        height: 25%;
+	        height: 20%;
 	        margin: 10%;
 	        padding: 10%;
 	      }
-	      /* Optional: Makes the sample page fill the window. */
-	      html, body {
-	        height: 100%;
-	        margin: 0;
-	        padding: 0;
-	      }
-
+	      
+			.button {
+		    	background-color: #E2E2E2;
+		    	font-family: "Times New Roman";
+		    	border: none;
+			    color: black;
+			    padding: 15px 32px;
+			    text-align: center;
+			    display: inline-block;
+			    font-size: 18px;
+			    margin: 4px 2px;
+			    cursor: pointer;
+			}
+			
+			h1{
+			font-family: 'Lobster';
+			font-size: 32px;
+			text-align: center;
+			}
 	    </style>
 	</head>
 	<body>
 	    
-	    <form method="get" action="/login">
-    		<div><input  type="submit" value="Sing in"/></div>
+	    <form th:action="@{/login}" method="get">
+    		<button class="button" >Sing in</button>
 		</form>
 		
-		<form method="get" action="/registration">
-    		<div><input type="submit" value="Sing up"/></div>
+		<form th:action="@{/registration}" >
+    		<button class="button" >Sing up</button>
 		</form>
 		
 		
-	  	<h1 align="center"> Welcome! </h1>
+	  	<h1> Welcome! </h1>
 	    
 	    <div id="map"></div>
 	    <script>
