@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,7 +22,7 @@ public class LoginController {
 	}
 	
 	@RequestMapping(method = RequestMethod.POST)
-    public String processLogin(String email, String password, ModelMap model) {
+    public String processLogin(String email, String password, ModelMap model) throws Exception {
 		
 		
 		ApplicationContext context = new ClassPathXmlApplicationContext("Beans.xml");
@@ -37,11 +38,14 @@ public class LoginController {
 				model.addAttribute("firstName", firstName);
 				model.addAttribute("lastName", lastName);
 				
+				//AuthenticationManagerBuilder auth = null;
+				//auth.inMemoryAuthentication().withUser(email).password(password).roles("USER");
+				
 				return "home";
 			}
 		}
         
-		return "error";
+		return "home";
 	}
 }
 

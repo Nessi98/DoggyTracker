@@ -1,7 +1,28 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:tiles="http://www.thymeleaf.org">
   <head>
-    <title tiles:fragment="title">Messages : Create</title>
+    <title tiles:fragment="title">Registration </title>
+    
+    <style>
+	form{
+		font-family: "Time New Romans";
+		font-size: 24px;
+		padding: 1%;
+		margin: 1%;
+	}
+	button{
+		background-color: #E6E6FA;
+		font-family: "Times New Roman";
+		color: black;
+		border-color: black;
+		padding: 15px 32px;
+		text-align: center;
+		display: inline-block;
+		font-size: 18px;
+		margin: 4px 2px;
+		cursor: pointer;
+	}
+	</style>
   </head>
   <body>
     <div tiles:fragment="content">  
@@ -22,7 +43,7 @@
                 <input type="password" id="password" name="password"/> 
                    
                 <div class="form-actions">
-                    <button type="submit" class="btn">Register</button>
+                    <button type="submit"">Register</button>
                 </div>
             </fieldset>
         </form>

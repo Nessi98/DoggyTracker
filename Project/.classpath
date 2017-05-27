@@ -18,5 +18,6 @@
 	<classpathentry kind="lib" path="/home/nessy/lib/org.springframework.beans_3.0.5.RELEASE.jar"/>
 	<classpathentry kind="lib" path="/home/nessy/lib/org.springframework.transaction.jar"/>
 	<classpathentry kind="lib" path="/home/nessy/lib/spring-security-3.2.9.RELEASE/dist/spring-security-web-3.2.9.RELEASE.jar"/>
+	<classpathentry kind="lib" path="/home/nessy/lib/commons-validator-1.4.0.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

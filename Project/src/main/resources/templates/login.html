@@ -1,19 +1,55 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
-    <head>
-        <title>Login </title>
-    </head>
-    <body>
-        <div th:if="${param.error}">
-            Invalid email and password.
-        </div>
-        <div th:if="${param.logout}">
-            You have been logged out.
-        </div>
-        <form th:action="@{/login}" method="post">
-            <div><label> Email address : <input type="text" name="email"/> </label></div>
-            <div><label> Password: <input type="password" name="password"/> </label></div>
-            <div><input type="submit" value="Sign In"/></div>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3" xmlns:tiles="http://www.thymeleaf.org">
+<head>
+	<title>Login </title>
+	<style>
+	form{
+		font-family: "Time New Romans";
+		font-size: 24px;
+		padding: 1%;
+		margin: 1%;
+	}
+
+	
+	button{
+		background-color: #E6E6FA;
+		font-family: "Times New Roman";
+		color: black;
+		border-color: black;
+		padding: 15px 32px;
+		text-align: center;
+		display: inline-block;
+		font-size: 18px;
+		margin: 4px 2px;
+		cursor: pointer;
+		}
+	</style>
+</head>
+<body>
+	<div tiles:fragment="content">  
+        <form name="form" th:action="@{/login}" method="post">               
+            <fieldset>
+                <legend>Login!</legend>
+        		<div th:if="${param.error}">
+            	Invalid email or password.
+        		</div>
+        		
+        		<div th:if="${param.logout}">
+            	You have been logged out.
+        		</div>
+        		
+            	<label> Email address : </label>
+            	<input type="text" name="email"/> 
+            	
+            	
+            	<label> Password :</label>
+            	<input type="password" name="password"/>
+            	
+            	<div class="form-actions">
+                    <button type="submit" >Login</button>
+                </div>
+            </fieldset>
         </form>
+	</div>
     </body>
 </html>
