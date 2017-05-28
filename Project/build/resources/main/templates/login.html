@@ -26,18 +26,8 @@
 	</style>
 </head>
 <body>
-	<div>  
-        <form name="form" th:action="@{/login}" method="post">               
-            <fieldset>
-                <legend>Login!</legend>
-        		<div th:if="${param.error}">
-            	Invalid email or password.
-        		</div>
-        		
-        		<div th:if="${param.logout}">
-            	You have been logged out.
-        		</div>
-        		
+	
+	        <form th:action="@{/login}" method="post">               
             	<label> Email address : </label>
             	<input type="text" name="email"/> 
             	
@@ -48,8 +38,6 @@
             	<div class="form-actions">
                     <button type="submit" >Login</button>
                 </div>
-            </fieldset>
         </form>
-	</div>
     </body>
 </html>

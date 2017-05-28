@@ -1,10 +1,9 @@
 package org.doggy.tracker;
 
-import java.util.List;
-
 import org.apache.commons.validator.routines.EmailValidator;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.security.authentication.encoding.Md5PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -20,10 +19,7 @@ public class RegistrationController {
 	}
 
 	@RequestMapping(method = RequestMethod.POST)
-    public String processRegistration(String firstName, String lastName, String email, String password) {
-		
-		ApplicationContext context = new ClassPathXmlApplicationContext("Beans.xml");
-		UserJDBCTemplate userJDBCTemplate = (UserJDBCTemplate)context.getBean("userJDBCTemplate");
+    public String processRegistration(String firstName, String lastName, String email, String password) {	
 		
 		if(firstName.isEmpty() || firstName.length() < 3 || firstName.length() > 16) {
 			return "error";
@@ -38,20 +34,27 @@ public class RegistrationController {
 		}
 		
 		
-		if(email.isEmpty() || EmailValidator.getInstance().isValid(email)){
+		if(email.isEmpty() || !EmailValidator.getInstance().isValid(email)){
 			return "error";
 		}
-
-		List<User> users = userJDBCTemplate.listUsers();
 		
-        for (User record : users) {
-            if(email.equals(record.getEmail())){
-
-            	return "error";
-            }
-         }
-         
-        userJDBCTemplate.create(firstName, lastName, email, password);
+		ApplicationContext context = new ClassPathXmlApplicationContext("Beans.xml");
+		UserJDBCTemplate userJDBCTemplate = (UserJDBCTemplate)context.getBean("userJDBCTemplate");
+		
+		User user = userJDBCTemplate.getUser(email);
+		
+		if(!user.equals(null)){
+			((ClassPathXmlApplicationContext)context).close();
+			return "error";
+		}
+		
+        Md5PasswordEncoder encoderMD5 = new Md5PasswordEncoder();
+        String securePass = encoderMD5.encodePassword(password, null);
+        
+        System.out.println("This is the password :" + securePass);
+        
+        userJDBCTemplate.create(firstName, lastName, email, securePass);
+        ((ClassPathXmlApplicationContext)context).close();
         
         return "welcome";
 	}

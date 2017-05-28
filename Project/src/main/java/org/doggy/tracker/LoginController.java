@@ -1,14 +1,12 @@
 																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																															package org.doggy.tracker;
 
-import java.util.List;
-
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-
+import org.springframework.ui.ModelMap;
+import javax.servlet.http.HttpServletRequest;
+import org.springframework.stereotype.Controller;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
+import org.springframework.security.authentication.encoding.Md5PasswordEncoder;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -30,25 +28,33 @@ public class LoginController {
 		ApplicationContext context = new ClassPathXmlApplicationContext("Beans.xml");
 		UserJDBCTemplate userJDBCTemplate = (UserJDBCTemplate)context.getBean("userJDBCTemplate");
 
-		List<User> users = userJDBCTemplate.listUsers();
+		User user = userJDBCTemplate.getUser(email);
 		
-		for (User record : users) {
-			if(email.equals(record.getEmail()) && password.equals(record.getPassword())){
-			    String firstName = record.getFirstName();
-			    String lastName = record.getLastName();
-
-				model.addAttribute("firstName", firstName);
-				model.addAttribute("lastName", lastName);
-				
-				session.invalidate();
-			    HttpSession newSession = request.getSession();
-				
-
-				return "home";
-			}
-		}
+		Md5PasswordEncoder encoderMD5 = new Md5PasswordEncoder();
+        String securePass = encoderMD5.encodePassword(password, null);
         
-		return "error";
+        System.out.println("Test 2: " + securePass);
+        
+		if(!user.getPassword().equals(securePass)){
+			System.out.print("This is a test" + userJDBCTemplate.getUser(email));
+			((ClassPathXmlApplicationContext)context).close();
+	
+			return "error";
+		}
+		
+		//session.invalidate();
+	   // HttpSession newSession = request.getSession();
+	    
+	    //newSession.
+		
+		String firstName = user.getFirstName();
+	    String lastName = user.getLastName();
+
+		model.addAttribute("firstName", firstName);
+		model.addAttribute("lastName", lastName);
+		
+        ((ClassPathXmlApplicationContext)context).close();
+		return "home";
 	}
 }
 

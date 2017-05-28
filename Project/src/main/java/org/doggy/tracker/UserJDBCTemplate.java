@@ -45,5 +45,11 @@ public class UserJDBCTemplate implements UserDAO {
       System.out.println("Updated Record with ID = " + id );
       return;
    }
+   
+   public User getUserPassword(String password){
+	   String SQL = "SELECT * FROM User WHERE password = ?";
+	   User user =  (User) jdbcTemplateObject.query(SQL,  new Object[]{password}, new UserMapper());
+	   return user; 
+   }
 
 }

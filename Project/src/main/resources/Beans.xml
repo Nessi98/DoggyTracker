@@ -30,5 +30,7 @@
       class="org.doggy.tracker.DeviceJDBCTemplate">
       <property name="dataSource"  ref="dataSource" />    
    </bean>
-      
+   
+	<bean name="md5" class="org.springframework.security.authentication.encoding.Md5PasswordEncoder"/>
+ 
 </beans>
