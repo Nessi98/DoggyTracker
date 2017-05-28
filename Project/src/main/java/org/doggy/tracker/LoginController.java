@@ -2,16 +2,18 @@
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
-@RequestMapping(value = "/login")
+@RequestMapping("/login")
 public class LoginController {
 	
 	
@@ -22,7 +24,7 @@ public class LoginController {
 	}
 	
 	@RequestMapping(method = RequestMethod.POST)
-    public String processLogin(String email, String password, ModelMap model) throws Exception {
+    public String processLogin(HttpSession session, HttpServletRequest request, String email, String password, ModelMap model) throws Exception {
 		
 		
 		ApplicationContext context = new ClassPathXmlApplicationContext("Beans.xml");
@@ -38,14 +40,15 @@ public class LoginController {
 				model.addAttribute("firstName", firstName);
 				model.addAttribute("lastName", lastName);
 				
-				//AuthenticationManagerBuilder auth = null;
-				//auth.inMemoryAuthentication().withUser(email).password(password).roles("USER");
+				session.invalidate();
+			    HttpSession newSession = request.getSession();
 				
+
 				return "home";
 			}
 		}
         
-		return "home";
+		return "error";
 	}
 }
 

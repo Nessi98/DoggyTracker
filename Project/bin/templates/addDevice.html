@@ -1,11 +1,11 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:tiles="http://www.thymeleaf.org">
   <head>
-    <title tiles:fragment="title">Messages : Create</title>
+    <title tiles:fragment="title">Add Device</title>
   </head>
   <body>
     <div tiles:fragment="content">
-        <form name="addDevice" th:action="@{/registration}" method="post">               
+        <form name="addDevice" th:action="@{/addDevice}" method="post">               
             <fieldset>
                 <legend>Add Device</legend>
 
@@ -16,14 +16,10 @@
                 <input type="text" id="activationKey" name="activationKey"/>
    
                 <label for="name">Set name</label>
-                <input type="text" id="name" name="name"/>  
+                <input type="text" id="name" name="name"/>   
                   
                 <div class="form-actions">
-                    <button type="submit" class="btn">Cancel</button>
-                </div> 
-                  
-                <div class="form-actions">
-                    <button type="submit" class="btn">Add Device</button>
+                    <button type="submit">Add Device</button>
                 </div>
                 
             </fieldset>

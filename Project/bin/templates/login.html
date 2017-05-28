@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3" xmlns:tiles="http://www.thymeleaf.org">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3" >
 <head>
 	<title>Login </title>
 	<style>
@@ -26,7 +26,7 @@
 	</style>
 </head>
 <body>
-	<div tiles:fragment="content">  
+	<div>  
         <form name="form" th:action="@{/login}" method="post">               
             <fieldset>
                 <legend>Login!</legend>

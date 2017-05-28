@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class LocationController {
 
 	@RequestMapping(method = RequestMethod.GET)
-    public String location(@RequestParam(value = "User") String User,
+    public void location(@RequestParam(value = "User") String User,
             @RequestParam(value = "Pass") String pass,
             @RequestParam(value = "IMEI") String imei,
             @RequestParam(value = "GPS") List<String> params, Model model, HttpServletResponse response)  throws ServletException, IOException{
@@ -39,8 +39,8 @@ public class LocationController {
 		PrintWriter writer = response.getWriter();
 		
         String htmlRespone = "<html> <head>";
-        htmlRespone += "<meta name='viewport' content='initial-scale=1.0, user-scalable=no'/><title>Location</title><style> #map { height: 25%; margin: 10%;  padding: 10%; }";
-        htmlRespone += " </style></head><body><div id='map'></div>";
+        htmlRespone += "<meta name='viewport' content='initial-scale=1.0, user-scalable=no'/><title>Location</title> <style> #map { height: 25%; margin: 10%;  padding: 10%; }";
+        htmlRespone += " </style></head> <body><div id='map'></div>";
         htmlRespone += "<script type='text/javascript'> function initMap() { var myLatLng = {lat: " + latitude + ", lng: " + longitude + "};";      
         htmlRespone += "var map = new google.maps.Map(document.getElementById('map'), { zoom: 20,  center: myLatLng}); var marker = new google.maps.Marker({ position: myLatLng, map: map});} </script>";    
         htmlRespone += "<script async='async' defer='defer' src='https://maps.googleapis.com/maps/api/js?key= AIzaSyAFDPa0zKd2Lua8zEJhJe8yVcuzbVAqeIw&callback=initMap'> </script></body>";
@@ -48,12 +48,15 @@ public class LocationController {
          
         // return response
         writer.println(htmlRespone);
+        
+        //model.addAttribute("latitude", latitude);
+        //model.addAttribute("longitude", longitude);
 		
-        return "location";
+        //return "location";
     }
 
 }
 
-// location?IMEI=861694038972483&User=Testdev2&Pass=M2IP1382&Description="Testdev2"861694038972483BAT-0,42.64260GSM:"0578","0890"&GPS=$GNRMC,085606.510,A,23.36640,N,02317.3632,E,0.23,0.00,171116,,,A*76&
+// example request: location?IMEI=861694038972483&User=Testdev2&Pass=M2IP1382&Description=%22Testdev2%22861694038972483BAT-0,48,3785GSM:%220578%22,%220890%22&GPS=$GNRMC,085606.510,A,4240.4820,N,02317.3632,E,0.23,0.00,171116,,,A*76&
 //get for the map
 //Store string in coockie with JS

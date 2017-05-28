@@ -22,7 +22,7 @@ public class AddDeviceController {
     public String processAddDevice(String imei, String activationKey, String name) {
 		
 		ApplicationContext context = new ClassPathXmlApplicationContext("Beans.xml");
-		DeviceJDBCTemplate deviceJDBCTemplate = (DeviceJDBCTemplate)context.getBean("deviceDBCTemplate");
+		DeviceJDBCTemplate deviceJDBCTemplate = (DeviceJDBCTemplate)context.getBean("deviceJDBCTemplate");
 
 		List<Device> devices = deviceJDBCTemplate.listDevices();
 		
