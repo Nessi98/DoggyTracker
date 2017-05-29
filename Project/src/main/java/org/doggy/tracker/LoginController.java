@@ -1,4 +1,4 @@
-																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																															package org.doggy.tracker;
+package org.doggy.tracker;
 
 import javax.servlet.http.HttpSession;
 import org.springframework.ui.ModelMap;
@@ -47,6 +47,7 @@ public class LoginController {
 	    
 	    //newSession.
 		
+		
 		String firstName = user.getFirstName();
 	    String lastName = user.getLastName();
 
@@ -54,6 +55,7 @@ public class LoginController {
 		model.addAttribute("lastName", lastName);
 		
         ((ClassPathXmlApplicationContext)context).close();
+        
 		return "home";
 	}
 }

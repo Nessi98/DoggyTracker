@@ -1,16 +1,18 @@
 package org.doggy.tracker;
 
-import javax.validation.constraints.NotNull;
-
 public class User {
 	
 	private String firstName;
 	private String lastName;
-	@NotNull
 	private String email;
 	private String password;
 	
-	public User(){}
+	public User(){
+		this.firstName = "";
+		this.lastName = "";
+		this.email = "";
+		this.password = "";
+	}
 	
 	public User(String firstName, String lastName, String email, String password){
 		this.firstName = firstName;
@@ -52,4 +54,3 @@ public class User {
 	}
 
 }
-//	@NotEmpty(message = "Please enter your password.") @Size(min = 6, max = 15, message = "Your password must between 6 and 15 characters")

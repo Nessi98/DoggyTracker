@@ -1,0 +1,26 @@
+#map {
+	height: 22%;
+	margin: 10%;
+	padding: 10%;
+}
+      
+.button {
+	background-color: #E2E2E2;
+	font-family: "Times New Roman";
+	border: none;
+	color: black;
+	padding: 15px 32px;
+	text-align: center;
+	display: inline-block;
+	font-size: 18px;
+	margin: 4px 2px;
+	cursor: pointer;
+}
+		
+h1{
+	font-family: "Time New Roman";
+	font-size: 32px;
+	text-align: center;
+	padding: 5%;
+	margin: 5%
+}

@@ -20,16 +20,14 @@
    </bean>
    
    <!-- Definition for deviceReportJDBCTemplate bean -->
-   <bean id="deviceReportJDBCTemplate" 
-      class="org.doggy.tracker.DeviceReportJDBCTemplate">
+   <bean id="deviceReportJDBCTemplate"  class="org.doggy.tracker.DeviceReportJDBCTemplate">
       <property name="dataSource"  ref="dataSource" />    
    </bean>
    
       <!-- Definition for deviceJDBCTemplate bean -->
-   <bean id="deviceJDBCTemplate" 
-      class="org.doggy.tracker.DeviceJDBCTemplate">
-      <property name="dataSource"  ref="dataSource" />    
-   </bean>
+	<bean id="deviceJDBCTemplate" class="org.doggy.tracker.DeviceJDBCTemplate">
+		<property name="dataSource"  ref="dataSource" />    
+	</bean>
    
 	<bean name="md5" class="org.springframework.security.authentication.encoding.Md5PasswordEncoder"/>
  

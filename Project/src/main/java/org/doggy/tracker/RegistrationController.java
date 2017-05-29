@@ -20,19 +20,18 @@ public class RegistrationController {
 
 	@RequestMapping(method = RequestMethod.POST)
     public String processRegistration(String firstName, String lastName, String email, String password) {	
-		
+			
 		if(firstName.isEmpty() || firstName.length() < 3 || firstName.length() > 16) {
 			return "error";
 		}
-		
+
 		if(lastName.isEmpty() || lastName.length() < 3 || lastName.length() > 16) {
 			return "error";
 		}
-		
+
 		if(password.isEmpty() || password.length() < 5 || password.length() > 16) {
 			return "error";
 		}
-		
 		
 		if(email.isEmpty() || !EmailValidator.getInstance().isValid(email)){
 			return "error";
@@ -41,13 +40,15 @@ public class RegistrationController {
 		ApplicationContext context = new ClassPathXmlApplicationContext("Beans.xml");
 		UserJDBCTemplate userJDBCTemplate = (UserJDBCTemplate)context.getBean("userJDBCTemplate");
 		
+		System.out.println("Before getUser by email");
 		User user = userJDBCTemplate.getUser(email);
+		System.out.println("User email: " + user.getEmail());
 		
-		if(!user.equals(null)){
+		if(user.getEmail().equals(email)){
 			((ClassPathXmlApplicationContext)context).close();
 			return "error";
 		}
-		
+		System.out.println("After getUser");
         Md5PasswordEncoder encoderMD5 = new Md5PasswordEncoder();
         String securePass = encoderMD5.encodePassword(password, null);
         

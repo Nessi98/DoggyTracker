@@ -21,14 +21,16 @@ public class UserJDBCTemplate implements UserDAO {
 
    public User getUser(String email) {
       String SQL = "SELECT * FROM User WHERE email = ?";
-      User user = jdbcTemplateObject.queryForObject(SQL, 
-                        new Object[]{email}, new UserMapper());
+
+      User user = jdbcTemplateObject.queryForObject(SQL, new Object[]{email}, new UserMapper());
+
       return user;
    }
 
    public List<User> listUsers() {
       String SQL = "SELECT * FROM User";
       List <User> users = jdbcTemplateObject.query(SQL, new UserMapper());
+      
       return users;
    }
 
@@ -43,13 +45,8 @@ public class UserJDBCTemplate implements UserDAO {
       String SQL = "UPDATE User SET email = ? WHERE id = ?";
       jdbcTemplateObject.update(SQL, email, id);
       System.out.println("Updated Record with ID = " + id );
+      
       return;
-   }
-   
-   public User getUserPassword(String password){
-	   String SQL = "SELECT * FROM User WHERE password = ?";
-	   User user =  (User) jdbcTemplateObject.query(SQL,  new Object[]{password}, new UserMapper());
-	   return user; 
    }
 
 }
