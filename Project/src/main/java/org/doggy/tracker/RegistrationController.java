@@ -40,19 +40,17 @@ public class RegistrationController {
 		ApplicationContext context = new ClassPathXmlApplicationContext("Beans.xml");
 		UserJDBCTemplate userJDBCTemplate = (UserJDBCTemplate)context.getBean("userJDBCTemplate");
 		
-		System.out.println("Before getUser by email");
 		User user = userJDBCTemplate.getUser(email);
-		System.out.println("User email: " + user.getEmail());
-		
+
 		if(user.getEmail().equals(email)){
 			((ClassPathXmlApplicationContext)context).close();
 			return "error";
 		}
-		System.out.println("After getUser");
+
         Md5PasswordEncoder encoderMD5 = new Md5PasswordEncoder();
         String securePass = encoderMD5.encodePassword(password, null);
         
-        System.out.println("This is the password :" + securePass);
+        //System.out.println("This is the password :" + securePass);
         
         userJDBCTemplate.create(firstName, lastName, email, securePass);
         ((ClassPathXmlApplicationContext)context).close();

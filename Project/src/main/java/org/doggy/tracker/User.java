@@ -7,12 +7,7 @@ public class User {
 	private String email;
 	private String password;
 	
-	public User(){
-		this.firstName = "";
-		this.lastName = "";
-		this.email = "";
-		this.password = "";
-	}
+	public User(){}
 	
 	public User(String firstName, String lastName, String email, String password){
 		this.firstName = firstName;

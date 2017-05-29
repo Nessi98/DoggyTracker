@@ -44,7 +44,8 @@ public class UserJDBCTemplate implements UserDAO {
    public void update(Integer id, String email){
       String SQL = "UPDATE User SET email = ? WHERE id = ?";
       jdbcTemplateObject.update(SQL, email, id);
-      System.out.println("Updated Record with ID = " + id );
+      
+      //System.out.println("Updated Record with ID = " + id );
       
       return;
    }

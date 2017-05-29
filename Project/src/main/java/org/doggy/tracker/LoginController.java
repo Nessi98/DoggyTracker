@@ -36,7 +36,6 @@ public class LoginController {
         System.out.println("Test 2: " + securePass);
         
 		if(!user.getPassword().equals(securePass)){
-			System.out.print("This is a test" + userJDBCTemplate.getUser(email));
 			((ClassPathXmlApplicationContext)context).close();
 	
 			return "error";
@@ -44,7 +43,6 @@ public class LoginController {
 		
 		//session.invalidate();
 	   // HttpSession newSession = request.getSession();
-	    
 	    //newSession.
 		
 		
