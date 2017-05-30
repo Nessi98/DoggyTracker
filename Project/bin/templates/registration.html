@@ -1,50 +1,66 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:tiles="http://www.thymeleaf.org">
-  <head>
-    <title tiles:fragment="title">Registration </title>
-    
+<head>
+    <title tiles:fragment="title">Registration </title> 
     <style>
-	form{
-		font-family: "Time New Romans";
-		font-size: 24px;
-		padding: 1%;
-		margin: 1%;
-	}
-	button{
-		background-color: #E6E6FA;
-		font-family: "Times New Roman";
-		color: black;
-		border-color: black;
-		padding: 15px 32px;
-		text-align: center;
-		display: inline-block;
-		font-size: 18px;
-		margin: 4px 2px;
-		cursor: pointer;
-	}
+		.registration-legend{
+			padding-top: 5%;
+			text-align: center;
+			font-family: "Time New Romans";
+			font-size: 24px;
+			color: black;
+		}
+		
+		.form{
+			
+			font-family: "Time New Romans";
+			font-size: 24px;
+			color: black;
+			text-align: center;
+			padding-top: 15px;
+			
+		}
+		.registrationButton{
+			font-family: "Time New Romans";
+			font-size: 17px;
+			text-align: center;
+			padding-top: 15px;
+			border: none;
+			color: black;
+		}
+		
+		button{
+			background-color: #DCDCDC;
+			padding: 14px 40px;
+		}
 	</style>
-  </head>
+</head>
   
-  <body>
+<body>
     <div>  
-        <form name="form" th:action="@{/registration}" method="post">   \
-
-                <label for="firstName">First Name</label>
-                <input type="text" id="firstName" name="firstName"/>
-                  
-                <label for="lastName">Last Name</label>
-                <input type="text" id="lastName" name="lastName"/>
-   
-                <label for="email">Email address</label>
-                <input type="text" id="email" name="email"/>  
-                      
-                <label for="password">Password</label>
-                <input type="password" id="password" name="password"/> 
-                   
-                <div class="form-actions">
-                    <button type="submit">Register</button>
-                </div>
+        <form th:action="@{/registration}" method="post">
+			<legend class="registration-legend"> Make your registration! </legend>
+			
+			<div class="form">
+               	<input type="text" id="firstName" name="firstName" placeholder="First Name"/>
+            </div>
+                
+            <div class="form">
+               	<input type="text" id="lastName" name="lastName" placeholder="Last Name"/>
+   			</div>
+   				
+   			<div class="form">
+               	<input type="text" id="email" name="email" placeholder="Email Address"/>  
+            </div>   
+            
+            <div class="form">
+                <input type="password" id="password" name="password" placeholder="Password"/> 
+             </div>  
+             
+             <div class="registrationButton">
+             	<button type="submit">Register</button>
+             </div>
         </form>
     </div>
-  </body>
+</body>
 </html>

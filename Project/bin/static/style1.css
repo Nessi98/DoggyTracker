@@ -28,9 +28,24 @@ h1{
 }
 
 nav{
-		padding: 0,5%;
-		color: black;
-		font-family: "Time New Romans";
-		font-size: 19px;
+	padding: 0,5%;
+	color: black;
+	font-family: "Time New Romans";
+	font-size: 19px;
+	
+}
+
+.addDevice-legend{
+	text-align: center;
+	font-family: "Time New Romans";
+	font-size: 24px;
+	color: black;
+}
 		
+.form{
+	font-family: "Time New Romans";
+	font-size: 20px;
+	color: black;
+	text-align: center;
+	padding-top: 15px;
 }

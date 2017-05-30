@@ -3,6 +3,39 @@
 <head>
 	<title tiles:fragment="title">Add Device</title>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css"/>
+	
+	<style>
+		legend{
+			text-align: center;
+			font-family: "Time New Romans";
+			font-size: 24px;
+			color: black;
+		}
+		
+		.form{
+			
+			font-family: "Time New Romans";
+			font-size: 20px;
+			color: black;
+			text-align: center;
+			padding-top: 15px;
+			
+		}
+		
+		.addDeviceButton{
+			font-family: "Time New Romans";
+			font-size: 17px;
+			text-align: center;
+			padding-top: 15px;
+			border: none;
+			color: black;
+		}
+		
+		button{
+			background-color: #DCDCDC;
+			padding: 14px 40px;
+		}
+	</style>
 </head>
 
 <body>
@@ -22,21 +55,24 @@
 		</div>
 	</nav>		
   
-    <div tiles:fragment="content">
+    <div>
         <form name="addDevice" th:action="@{/addDevice}" method="post">               
             <fieldset>
                 <legend>Add Device</legend>
-
-                <label for="imei">Device IMEI</label>
-                <input type="text" id="imei" name="imei"/>
-                  
-                <label for="activationKey">Activation Key</label>
-                <input type="text" id="activationKey" name="activationKey"/>
-   
-                <label for="name">Set name</label>
-                <input type="text" id="name" name="name"/>   
-                  
-                <div class="form-actions">
+				
+				<div class="form">
+                	<input type="text" id="imei" placeholder="Device IMEI"/>
+                </div>
+                
+                <div class="form">
+                	<input type="text" id="activationKey" name="activationKey" placeholder="Activation Key"/>
+   				</div>
+   				
+   				<div class="form">
+                	<input type="text" id="name" name="name" placeholder="Set Name"/>   
+                </div>
+                
+                <div class="addDeviceButton">
                     <button type="submit">Add Device</button>
                 </div>
                 

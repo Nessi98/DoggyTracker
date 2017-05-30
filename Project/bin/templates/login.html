@@ -3,40 +3,52 @@
 <head>
 	<title>Login </title>
 	<style>
-	form{
-		font-family: "Time New Romans";
-		font-size: 24px;
-		padding: 1%;
-		margin: 1%;
-	}
-
+		.form{
+			font-family: "Time New Romans";
+			font-size: 24px;
+			color: black;
+			text-align: center;
+			padding-top: 15px;
+			
+		}
+		.classicLegend{
+			padding-top: 5%;
+			text-align: center;
+			font-family: "Time New Romans";
+			font-size: 24px;
+			color: black;
+		}
 	
-	button{
-		background-color: #E6E6FA;
-		font-family: "Times New Roman";
-		color: black;
-		border-color: black;
-		padding: 15px 32px;
-		text-align: center;
-		display: inline-block;
-		font-size: 18px;
-		margin: 4px 2px;
-		cursor: pointer;
+		.classicButton{
+			font-family: "Time New Romans";
+			font-size: 17px;
+			text-align: center;
+			padding-top: 15px;
+			border: none;
+			color: black;
+		}
+		
+		button{
+			background-color: #DCDCDC;
+			padding: 14px 40px;
 		}
 	</style>
 </head>
 <body>
-	    <form th:action="@{/login}" method="post">               
-            	<label> Email address : </label>
-            	<input type="text" name="email"/> 
-            	
-            	
-            	<label> Password :</label>
-            	<input type="password" name="password"/>
-            	
-            	<div class="form-actions">
-                    <button type="submit" >Login</button>
-                </div>
-        </form>
-    </body>
+	<form th:action="@{/login}" method="post">
+	  	<legend class="classicLegend">Log in </legend>
+	  	
+	   	<div class="form">   
+           	<input type="text" name="email" placeholder="Email address"/> 
+    	</div>
+           
+        <div class="form">	
+           	<input type="password" name="password" placeholder="Password"/>
+        </div>
+           
+        <div class="classicButton">
+          	<button type="submit" >Login</button>
+        </div>
+	</form>
+</body>
 </html>
