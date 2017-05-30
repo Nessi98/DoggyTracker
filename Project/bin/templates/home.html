@@ -3,85 +3,46 @@
 <head>
     <title>Home Page</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css"/>
     <style>
+    <link rel="import" href="header.html"/>
+    
+	a{
+		text-decoration: none;
+	}
+	
+	p{
+		font-family: "Time New Romans";
+		font-size: 28px;
+		text-align: center;
+	}
+	nav{
+		padding: 0,5%;
+		color: black;
+		font-family: "Time New Romans";
+		font-size: 19px;
 		
-/* Dropdown Button */
-.dropbtn {
-    background-color: grey;
-    color: white;
-    padding: 16px;
-    font-size: 16px;
-    border: none;
-    cursor: pointer;
-}
-
-
-.dropdown {
-    position: relative;
-    display: inline-block;
-}
-
-.dropdown-content {
-    display: none;
-    position: absolute;
-    background-color: #f9f9f9;
-    min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    z-index: 1;
-}
-
-/* Links inside the dropdown */
-.dropdown-content form {
-    color: black;
-    padding: 12px 16px;
-    text-decoration: none;
-    display: block;
-}
-
-/* Change color of dropdown links on hover */
-.dropdown-content form:hover {background-color: #f1f1f1}
-
-/* Show the dropdown menu on hover */
-.dropdown:hover .dropdown-content {
-    display: block;
-}
-
-/* Change the background color of the dropdown button when the dropdown content is shown */
-.dropdown:hover .dropbtn {
-    background-color: #3e8e41;
-}
+	}
 	</style>
 </head>
 <body>
-	<h1 th:inline="text">Welcome [[${#httpServletRequest.remoteUser}]]!</h1>
-	
-	
-		<form method="get" action="/home">
-	    	<div><input  type="submit" value="Home"/></div>
-		</form>
-		
-		<form method="get" action="/location">
-	    	<div><input type="submit" value="Map"/></div>
-		</form>
-			
-		<form method="get" action="/addDevice">
-	    	<div><input type="submit" value="Add Device"/></div>
-		</form>
-		
-		<div class="dropdown">
-			  <button class="dropbtn">Settings</button>
-			  <div class="dropdown-content">
-			    		<form method="get" action="/viewProfile">
-	    					<div><input type="submit" value="View Profile"/></div>
-						</form>
-						<form method="get" action="/accountSettings">
-	    					<a href="accountSettings" type="submit" style="text-decoration:none;"> Acccount Settings </a>
-						</form>
-						<form th:action="@{/logout}" method="post">
-            				<input type="submit" value="Sign Out"/>
-       					</form>
-			  </div>
+	<nav class="navbar navbar-default">
+		<div class="container-fluid">
+	   		<ul class="nav navbar-nav">
+	        	<li><a th:href="@{/home}"> Home </a> </li>
+	        	<li><a th:href="@{/location}" > Map </a> </li>
+	      		<li><a th:href="@{/addDevice}" > Add Device</a></li>
+	       		<li><a th:href="@{/viewProfile}" > View Profile</a> </li>
+	        	<li><a th:href="@{/accountSettings}" > Account Settings</a> </li>
+	      	</ul>
+	      		     	      	
+	      	<ul class="nav navbar-nav navbar-right">
+	      		<li><a th:href="@{/}"> <span class="glyphicon glyphicon-log-out"> </span> Log out</a></li>
+	      	</ul>
 		</div>
-	$body
+	</nav>	
+	
+	<p> Welcome </p>
+	
 </body>
 </html>

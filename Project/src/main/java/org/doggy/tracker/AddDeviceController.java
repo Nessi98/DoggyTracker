@@ -26,8 +26,8 @@ public class AddDeviceController {
 
 		List<Device> devices = deviceJDBCTemplate.listDevices();
 		
-        for (Device record : devices) {
-            if(imei.equals(record.getImei()) && activationKey.equals(record.getActivationKey()) && record.getUserId() == 0 ){
+        for (Device device : devices) {
+            if(imei.equals(device.getImei()) && activationKey.equals(device.getActivationKey()) && device.getUserId() == 0 ){
             	
             	//File htmlWelcomeFile = new File("welcome.html");
             	//String htmlString = FileUtils.readFileToString(htmlWelcomeFile);
@@ -38,8 +38,8 @@ public class AddDeviceController {
             	//File newHtmlFile = new File("path/new.html");
             	//FileUtils.writeStringToFile(newHtmlFile, htmlString);
 
-            	deviceJDBCTemplate.update(imei, record.getUserId(), name);
-            	return "welcome";
+            	deviceJDBCTemplate.update(imei, device.getUserId(), name);
+            	return "redirect:/home";
             }
          }
          

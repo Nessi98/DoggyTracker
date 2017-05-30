@@ -1,10 +1,27 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:tiles="http://www.thymeleaf.org">
 <head>
-<meta charset="UTF-8"/>
-<title>View Profile</title>
+	<meta charset="UTF-8"/>
+	<title>View Profile</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css"/>
 </head>
 <body>
+	<nav class="navbar navbar-default">
+		<div class="container-fluid">
+	   		<ul class="nav navbar-nav">
+	        	<li><a th:href="@{/home}"> Home </a> </li>
+	        	<li><a th:href="@{/location}" > Map </a> </li>
+	      		<li><a th:href="@{/addDevice}" > Add Device</a></li>
+	       		<li><a th:href="@{/viewProfile}" > View Profile</a> </li>
+	        	<li><a th:href="@{/accountSettings}" > Account Settings</a> </li>
+	      	</ul>
+	      		     	      	
+	      	<ul class="nav navbar-nav navbar-right">
+	      		<li><a th:href="@{/}"> <span class="glyphicon glyphicon-log-out"> </span> Log out</a></li>
+	      	</ul>
+		</div>
+	</nav>	
+
 	<h1 align="center">View Profile</h1>
 	
 	<div><p th:text="'First Name: ' + ${firstName}" /></div>

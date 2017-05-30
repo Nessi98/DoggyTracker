@@ -40,7 +40,7 @@ targetCompatibility = 1.8
 dependencies {
     
     compile("mysql:mysql-connector-java:5.1.34")
-    compile("org.hibernate:hibernate-validator")
+
     compile 'commons-validator:commons-validator:1.4.1'
     compile("org.apache.tomcat.embed:tomcat-embed-el")
     compile("org.springframework.boot:spring-boot-devtools")
@@ -51,6 +51,14 @@ dependencies {
 
     compile group: 'org.springframework', name: 'spring-jdbc', version: '4.3.5.RELEASE'
     compile group: 'com.fasterxml.jackson.core', name: 'jackson-core', version: '2.9.0.pr1'
+    
+    configurations.all {
+	resolutionStrategy.eachDependency { DependencyResolveDetails details ->
+		if (details.requested.group == 'org.springframework') {
+			details.useVersion '4.3.5.RELEASE'
+		}
+	}
+}
     
     testCompile("junit:junit")
     testCompile("org.springframework.boot:spring-boot-starter-test")

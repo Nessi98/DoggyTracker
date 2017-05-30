@@ -1,5 +1,7 @@
 package org.doggy.tracker;
 
+import java.util.List;
+
 import org.apache.commons.validator.routines.EmailValidator;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -40,21 +42,27 @@ public class RegistrationController {
 		ApplicationContext context = new ClassPathXmlApplicationContext("Beans.xml");
 		UserJDBCTemplate userJDBCTemplate = (UserJDBCTemplate)context.getBean("userJDBCTemplate");
 		
-		User user = userJDBCTemplate.getUser(email);
+		//User user = userJDBCTemplate.getUser(email);
+		List<User> users = userJDBCTemplate.listUsers();
+		
+		for (User user : users) {
+			if(email.equals(user.getEmail())){
 
-		if(user.getEmail().equals(email)){
+		/*if(user.getEmail().equals(email)){
 			((ClassPathXmlApplicationContext)context).close();
 			return "error";
-		}
+		}*/
 
+		     return "error";
+			}
+		}
+		
         Md5PasswordEncoder encoderMD5 = new Md5PasswordEncoder();
         String securePass = encoderMD5.encodePassword(password, null);
-        
-        //System.out.println("This is the password :" + securePass);
         
         userJDBCTemplate.create(firstName, lastName, email, securePass);
         ((ClassPathXmlApplicationContext)context).close();
         
-        return "welcome";
+        return "redirect:/home";
 	}
 }

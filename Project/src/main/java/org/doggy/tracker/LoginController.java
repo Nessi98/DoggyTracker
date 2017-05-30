@@ -22,8 +22,9 @@ public class LoginController {
 	}
 	
 	@RequestMapping(method = RequestMethod.POST)
-    public String processLogin(HttpSession session, HttpServletRequest request, String email, String password, ModelMap model) throws Exception {
+    public String processLogin( HttpServletRequest request, String email, String password, ModelMap model) throws Exception {
 		
+		System.out.println("Login Controller");
 		
 		ApplicationContext context = new ClassPathXmlApplicationContext("Beans.xml");
 		UserJDBCTemplate userJDBCTemplate = (UserJDBCTemplate)context.getBean("userJDBCTemplate");
@@ -41,6 +42,11 @@ public class LoginController {
 			return "error";
 		}
 		
+		HttpSession session = request.getSession(false);
+		if (session != null) {
+			session.setAttribute("user", email);
+		}
+		
 		//session.invalidate();
 	   // HttpSession newSession = request.getSession();
 	    //newSession.
@@ -54,7 +60,7 @@ public class LoginController {
 		
         ((ClassPathXmlApplicationContext)context).close();
         
-		return "home";
+		return "redirect:/home";
 	}
 }
 
