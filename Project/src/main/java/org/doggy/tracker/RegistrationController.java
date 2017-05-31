@@ -52,7 +52,7 @@ public class RegistrationController {
 			((ClassPathXmlApplicationContext)context).close();
 			return "error";
 		}*/
-
+			((ClassPathXmlApplicationContext)context).close();
 		     return "error";
 			}
 		}

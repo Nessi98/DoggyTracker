@@ -12,19 +12,30 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
     	
-       /* http
-        .authorizeRequests()
-            .antMatchers("/", "/registration").permitAll() 
-            .anyRequest().authenticated()
-            .and()
-        .formLogin()
-            .loginPage("/login")
-            .permitAll()
-            .and()
-        .httpBasic()
-        	.and()
-        .logout()                                    
-            .permitAll();
-	} */}
+        http.authorizeRequests()
+        // allow the authenticate method to be accessible for the unautheticated users
+	        	.antMatchers("/", "/registration", "/login/authenticate").permitAll()
+	        	.anyRequest().authenticated()
+	        	.and()
+	        .formLogin()
+	        	.loginPage("/login")
+	        	.permitAll()
+	        	.and()
+	        .httpBasic()
+	        	.and()
+        	.logout().clearAuthentication(true)
+        		.permitAll();
+    } 
+    
+	
+    /*@Autowired
+    @Qualifier("authenticationManagerBean")
+    private AuthenticationManager authenticationManager;
+    
+    @Bean(name = BeanIds.AUTHENTICATION_MANAGER)
+    @Override
+    public AuthenticationManager authenticationManagerBean() throws Exception {
+        return super.authenticationManagerBean();
+    }*/
     
 }

@@ -9,19 +9,19 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 
 @Controller
 public class ViewProfileController {
 	
 	@RequestMapping(value = "/viewProfile", method = RequestMethod.GET)
-	public String viewProfile(HttpServletRequest request, ModelMap model){
-		HttpSession session = request.getSession(true); 
-		//User user = (User)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-		String currentPrincipalName = authentication.getName();
+	public String viewProfile( ModelMap model){
+		SecurityContext context = SecurityContextHolder.getContext();
+        Authentication authentication = context.getAuthentication();
+        User user = (User) authentication.getPrincipal();
 		
-		System.out.println("View Profile Controller: " + currentPrincipalName);
+		System.out.println("View Profile Controller: " + user.getEmail());
 		
 		//String firstName = user.getFirstName();
 		//String lastName = user.getLastName();
