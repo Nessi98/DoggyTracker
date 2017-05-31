@@ -1,15 +1,13 @@
 package org.doggy.tracker;
 
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Controller;
-
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
-
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletResponse;
-
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -19,10 +17,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class LocationController {
 
 	@RequestMapping(method = RequestMethod.GET)
-    public void location(@RequestParam(value = "User") String User,
-            @RequestParam(value = "Pass") String pass,
-            @RequestParam(value = "IMEI") String imei,
-            @RequestParam(value = "GPS") List<String> params, Model model, HttpServletResponse response)  throws ServletException, IOException{
+    public void location( @RequestParam(value = "IMEI") String imei,
+    		@RequestParam(value = "Description") String batteryLevel,
+            @RequestParam(value = "GPS") List<String> params, HttpServletResponse response)  throws ServletException, IOException{
+		
+		ApplicationContext context = new ClassPathXmlApplicationContext("Beans.xml");
+		DeviceJDBCTemplate deviceJDBCTemplate = (DeviceJDBCTemplate)context.getBean("deviceJDBCTemplate");
+		DeviceReportJDBCTemplate deviceJReportDBCTemplate = (DeviceReportJDBCTemplate)context.getBean("deviceReportJDBCTemplate");
 		
 		String lat = params.get(3);
 		String lon = params.get(5);
@@ -36,6 +37,17 @@ public class LocationController {
 		remainder = (int)longitude / 100;
 		longitude = remainder + ((longitude - remainder * 100)/60);
 		
+		Device device = deviceJDBCTemplate.getDevice(imei);
+		DeviceReport deviceReport = deviceJReportDBCTemplate.getDeviceReport(device.getId());
+		
+		if(deviceReport == null){
+			deviceJReportDBCTemplate.create(device.getId(), latitude, longitude, batteryLevel);
+		}else{
+			deviceJReportDBCTemplate.update(device.getId(), latitude, longitude, batteryLevel);
+		}
+		
+		((ClassPathXmlApplicationContext)context).close();
+		
 		PrintWriter writer = response.getWriter();
 		
         String htmlRespone = "<html> <head>";
@@ -48,15 +60,8 @@ public class LocationController {
          
         // return response
         writer.println(htmlRespone);
-        
-        //model.addAttribute("latitude", latitude);
-        //model.addAttribute("longitude", longitude);
-		
-        //return "location";
     }
 
 }
 
 // example request: location?IMEI=861694038972483&User=Testdev2&Pass=M2IP1382&Description=%22Testdev2%22861694038972483BAT-0,48,3785GSM:%220578%22,%220890%22&GPS=$GNRMC,085606.510,A,4240.4820,N,02317.3632,E,0.23,0.00,171116,,,A*76&
-//get for the map
-//Store string in coockie with JS

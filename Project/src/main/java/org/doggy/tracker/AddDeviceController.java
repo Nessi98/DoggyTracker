@@ -1,7 +1,5 @@
 package org.doggy.tracker;
 
-
-import java.util.List;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Controller;
@@ -24,25 +22,16 @@ public class AddDeviceController extends BaseController{
 		ApplicationContext context = new ClassPathXmlApplicationContext("Beans.xml");
 		DeviceJDBCTemplate deviceJDBCTemplate = (DeviceJDBCTemplate)context.getBean("deviceJDBCTemplate");
 
-		List<Device> devices = deviceJDBCTemplate.listDevices();
-		
-        for (Device device : devices) {
-            if(imei.equals(device.getImei()) && activationKey.equals(device.getActivationKey()) && device.getUserId() == 0 ){
-            	
-            	//File htmlWelcomeFile = new File("welcome.html");
-            	//String htmlString = FileUtils.readFileToString(htmlWelcomeFile);
-            	
-            	//String body = "<form method=\"get\" action=\"/addDevice\"><div><input type=\"submit\" value=\"Add Device\"/></div></form>";
-            	
-            	//htmlString = htmlString.replace("$body", body);
-            	//File newHtmlFile = new File("path/new.html");
-            	//FileUtils.writeStringToFile(newHtmlFile, htmlString);
+		Device device = deviceJDBCTemplate.getDevice(imei);
 
-            	deviceJDBCTemplate.update(imei, device.getUserId(), name);
-            	return "redirect:/home";
-            }
-         }
-         
+		if(activationKey.equals(device.getActivationKey()) && device.getUserId() == 0 ){
+               	deviceJDBCTemplate.update(name, device.getUserId(), device.getId());
+            	((ClassPathXmlApplicationContext)context).close();  	
+            	
+            	return "home";
+        }
+        
+        ((ClassPathXmlApplicationContext)context).close(); 
         return "error";
 	}
 }

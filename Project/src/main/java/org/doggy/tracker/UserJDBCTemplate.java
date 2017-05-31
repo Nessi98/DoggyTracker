@@ -12,9 +12,9 @@ public class UserJDBCTemplate implements UserDAO, UserDetailsService {
 	private JdbcTemplate jdbcTemplateObject;
 	
 	@Override
-		public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-			return getUser(username);
-		}
+	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+		return getUser(username);
+	}
 	   
 	public void setDataSource(DataSource dataSource) {
 		this.jdbcTemplateObject = new JdbcTemplate(dataSource);
@@ -22,8 +22,8 @@ public class UserJDBCTemplate implements UserDAO, UserDetailsService {
 
    public void create(String firstName, String lastName, String email, String password) {
       String SQL = "INSERT INTO User (firstName, lastName, email, password) values (?, ?, ?, ?)";
-      
       jdbcTemplateObject.update( SQL, firstName, lastName, email, password);
+      
       return;
    }
 

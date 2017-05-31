@@ -2,7 +2,6 @@ package org.doggy.tracker;
 
 import java.util.List;
 import javax.sql.DataSource;
-import java.text.DecimalFormat;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 public class DeviceReportJDBCTemplate  implements DeviceReportDAO{
@@ -13,39 +12,17 @@ public class DeviceReportJDBCTemplate  implements DeviceReportDAO{
 		this.jdbcTemplateObject = new JdbcTemplate(dataSource);
 	}
 
-	public void create(String latitude, String longitude, String batteryLevel) {
-		Float litersOfPetrol = Float.parseFloat(latitude);
-		
-		DecimalFormat df = new DecimalFormat("0.00");
-		df.setMaximumFractionDigits(2);
-		
-		latitude = df.format(litersOfPetrol);
-		
-		litersOfPetrol = Float.parseFloat(longitude);
-		longitude = df.format(litersOfPetrol);
-		
-		String SQL = "INSERT INTO DeviceReport (latitude, longitude, batteryLevel) values (?, ?, ?)";
+	public void create(Integer deviceId, float latitude, float longitude, String batteryLevel) {		
+		String SQL = "INSERT INTO DeviceReport (deviceId, latitude, longitude, batteryLevel) values (?, ?, ?, ?)";
       
-		jdbcTemplateObject.update( SQL, latitude, longitude, batteryLevel);
-		return;
+		jdbcTemplateObject.update(SQL, deviceId, latitude, longitude, batteryLevel);
    }
    
-	public void update(Integer id, String latitude, String longitude, String batteryLevel){
-		
-		String SQL = "UPDATE DeviceReport set latitude = ? longitude = ? batteryLevel = ? WHERE id = ?";
-	    jdbcTemplateObject.update(SQL, latitude, longitude, batteryLevel, id);
-	    System.out.println("Updated Record with ID = " + id );
-	    
-	    return;
+	public void update(Integer deviceId, float latitude, float longitude, String batteryLevel){		
+		String SQL = "UPDATE DeviceReport set latitude = ? longitude = ? batteryLevel = ? WHERE deviceId = ?";
+	    jdbcTemplateObject.update(SQL, latitude, longitude, batteryLevel, deviceId);
 	}
 	
-	public void delete(Integer id){
-		String SQL = "DELETE FROM DeviceReport WHERE id = ?";
-		jdbcTemplateObject.update(SQL, id);
-		System.out.println("Deleted Record with ID = " + id );
-		
-		return;
-	}
 	
 	public List<DeviceReport> listDeviceReports() {
 		String SQL = "SELECT * FROM DeviceReport";
@@ -54,10 +31,11 @@ public class DeviceReportJDBCTemplate  implements DeviceReportDAO{
 		return deviceReport;
 	}
 
-	@Override
-	public DeviceReport getDeviceReport(Integer id) {
-		// TODO Auto-generated method stub
-		return null;
+	public DeviceReport getDeviceReport(Integer deviceId) {
+		String SQL = "SELECT * FROM DeviceReport WHERE deviceId = ?";
+	    
+		DeviceReport deviceReport = jdbcTemplateObject.queryForObject(SQL, new Object[]{deviceId}, new DeviceReportMapper());
+		return deviceReport;
 	}
 
 }

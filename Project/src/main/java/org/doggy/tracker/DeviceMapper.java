@@ -8,12 +8,8 @@ public class DeviceMapper implements RowMapper<Device> {
 	
 	   public Device mapRow(ResultSet rs, int rowNum) throws SQLException {
 		   
-	      Device device = new Device();
-	      //device.setId(rs.getInt("id"));
-	      device.setUserId(rs.getInt("userId"));
-	      device.setImei(rs.getString("imei"));
-	      device.setName(rs.getString("name"));
-	      device.setActivationKey(rs.getString("activationKey"));
+	      Device device = new Device(rs.getInt("id"),rs.getInt("userId"), rs.getString("imei"),
+	    		  rs.getString("name"), rs.getString("activationKey"));
 	      
 	      return device;
 	   }
