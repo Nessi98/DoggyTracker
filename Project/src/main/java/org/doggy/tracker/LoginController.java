@@ -2,7 +2,6 @@ package org.doggy.tracker;
 
 import javax.servlet.http.HttpSession;
 import org.springframework.ui.ModelMap;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.springframework.stereotype.Controller;
@@ -27,7 +26,7 @@ public class LoginController {
 	}
 	
 	@RequestMapping(value = "/authenticate", method = RequestMethod.POST)
-	public String authenticate(HttpServletRequest request, HttpServletResponse response, String email, String password) throws Exception {
+	public String authenticate(HttpServletRequest request, HttpServletResponse response, String email, String password,  ModelMap model) throws Exception {
 		
 		ApplicationContext context = new ClassPathXmlApplicationContext("Beans.xml");
 		UserJDBCTemplate userJDBCTemplate = (UserJDBCTemplate)context.getBean("userJDBCTemplate");
@@ -61,11 +60,11 @@ public class LoginController {
 	    if(session != null){
 	    	System.out.println("Test2" );
 	    }
-
+	    model.addAttribute("firstName", user.getFirstName());
         ((ClassPathXmlApplicationContext)context).close();
         
 
-		return "home";
+		return "redirect:/home";
 	}
 }
 

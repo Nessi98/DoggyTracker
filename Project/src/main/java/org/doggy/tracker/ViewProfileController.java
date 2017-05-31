@@ -4,10 +4,8 @@ import org.springframework.ui.ModelMap;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
-
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -17,19 +15,21 @@ public class ViewProfileController {
 	
 	@RequestMapping(value = "/viewProfile", method = RequestMethod.GET)
 	public String viewProfile( ModelMap model){
-		SecurityContext context = SecurityContextHolder.getContext();
-        Authentication authentication = context.getAuthentication();
-        User user = (User) authentication.getPrincipal();
 		
-		System.out.println("View Profile Controller: " + user.getEmail());
+		SecurityContext securityContext = SecurityContextHolder.getContext();
+        Authentication authentication = securityContext.getAuthentication();
+        String currentPrincipalName = authentication.getName();
 		
-		//String firstName = user.getFirstName();
-		//String lastName = user.getLastName();
-		//String email = user.getEmail();
+		ApplicationContext context = new ClassPathXmlApplicationContext("Beans.xml");
+		UserJDBCTemplate userJDBCTemplate = (UserJDBCTemplate)context.getBean("userJDBCTemplate");
+
+		User user = userJDBCTemplate.getUser(currentPrincipalName);
 		
-		//model.addAttribute("firstName", firstName);
-		//model.addAttribute("lastName", lastName);
-		//model.addAttribute("email", email);
+		model.addAttribute("firstName", user.getFirstName());
+		model.addAttribute("lastName", user.getLastName());
+		model.addAttribute("email", currentPrincipalName);
+		
+		((ClassPathXmlApplicationContext)context).close();
 		
 		return "viewProfile";
 	}

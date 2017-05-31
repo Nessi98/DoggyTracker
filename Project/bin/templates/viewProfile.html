@@ -4,6 +4,22 @@
 	<meta charset="UTF-8"/>
 	<title>View Profile</title>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css"/>
+	<style>
+	nav{
+		padding: 0,5%;
+		color: black;
+		font-family: "Time New Romans";
+		font-size: 19px;
+		
+	}
+	
+	p{
+		font-family: "Time New Romans";
+		font-sie: 24px;
+		color: black;
+		padding-top: 5px;
+	}
+	</style>
 </head>
 <body>
 	<nav class="navbar navbar-default">
@@ -25,7 +41,7 @@
 	<h1 align="center">View Profile</h1>
 	
 	<div><p th:text="'First Name: ' + ${firstName}" /></div>
-	<div><p th:text="'Last Name: ' + ${lasttName}" /></div>
+	<div><p th:text="'Last Name: ' + ${lastName}" /></div>
 	<div><p th:text="'Email Address: ' + ${email}" /></div>
 	
 </body>
