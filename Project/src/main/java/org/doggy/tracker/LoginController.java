@@ -24,7 +24,7 @@ public class LoginController extends BaseController{
 	@RequestMapping(name = "login", value = "/login", method = RequestMethod.GET)
 	public String login() {	
 		if (isUserLoggedIn()) {
-			return " " ; // Don' t let him go to the logging page again
+			return " " ; 
 		}
 		return "login";
 	}
@@ -32,7 +32,7 @@ public class LoginController extends BaseController{
 	@RequestMapping(name = "login", value = "/login", method = RequestMethod.POST)
 	public String authenticate(HttpServletRequest request, String email, String password,  ModelMap model) throws Exception {
 		if (isUserLoggedIn()) {
-			return " " ; // Don' t let him login again
+			return " " ; 
 		}
 		
 		User user = userJDBCTemplate.getUser(email);
@@ -75,14 +75,13 @@ public class LoginController extends BaseController{
 	@RequestMapping(name = "logout", value = "/logout" , method = RequestMethod.POST)
 	public String logOut() {
 		if (!isUserLoggedIn()) {
-			return " "; // don' t let not logged in users log out  
+			return " "; 
 		}
 		
 		SecurityContextHolder.getContext().setAuthentication(null);	
 		return " " ;
 	}
 	
-	// Could go to a base controller ?? 
 	protected boolean isUserLoggedIn() {
 		return SecurityContextHolder.getContext().getAuthentication() != null;
 	}
