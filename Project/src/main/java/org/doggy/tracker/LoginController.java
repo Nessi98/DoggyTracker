@@ -75,11 +75,11 @@ public class LoginController extends BaseController{
 	@RequestMapping(name = "logout", value = "/logout" , method = RequestMethod.POST)
 	public String logOut() {
 		if (!isUserLoggedIn()) {
-			return " "; 
+			return ""; 
 		}
 		
 		SecurityContextHolder.getContext().setAuthentication(null);	
-		return " " ;
+		return "" ;
 	}
 	
 	protected boolean isUserLoggedIn() {

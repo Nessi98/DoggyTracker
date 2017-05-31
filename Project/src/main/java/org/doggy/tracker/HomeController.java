@@ -3,8 +3,6 @@ package org.doggy.tracker;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContext;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,9 +17,8 @@ public class HomeController extends BaseController{
 	
 	@RequestMapping(method = RequestMethod.GET)
 	public String welcome(ModelMap model){
-		
-		SecurityContext securityContext = SecurityContextHolder.getContext();
-        Authentication authentication = securityContext.getAuthentication();
+
+        Authentication authentication = getUser();
         String currentPrincipalName = authentication.getName();
         
 		User user = userJDBCTemplate.getUser(currentPrincipalName);

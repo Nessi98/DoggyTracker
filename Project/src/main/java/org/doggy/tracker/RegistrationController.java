@@ -46,10 +46,6 @@ public class RegistrationController {
 		for (User user : users) {
 			if(email.equals(user.getEmail())){
 
-		/*if(user.getEmail().equals(email)){
-			((ClassPathXmlApplicationContext)context).close();
-			return "error";
-		}*/
 		     return "error";
 			}
 		}

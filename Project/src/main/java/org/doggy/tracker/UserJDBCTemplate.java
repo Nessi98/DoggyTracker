@@ -49,13 +49,22 @@ public class UserJDBCTemplate implements UserDAO, UserDetailsService {
       return;
    }
 
-   public void update(Integer id, String email){
-      String SQL = "UPDATE User SET email = ? WHERE id = ?";
-      jdbcTemplateObject.update(SQL, email, id);
+   public void updateByPassword(String password, String email){
+      String SQL = "UPDATE User SET password = ? WHERE email = ?";
+      jdbcTemplateObject.update(SQL, password, email);
       
-      //System.out.println("Updated Record with ID = " + id );
+      System.out.println("Updated Record with email = " + email);
       
       return;
    }
-
+   
+   public void updateByEmail(String newEmail, String oldEmail) {
+	   String SQL = "UPDATE User SET email = ? WHERE email = ?";
+	   jdbcTemplateObject.update(SQL, newEmail, oldEmail);
+   }
+   
+   public void updateByFirstName(String firstName,String email) {
+	   String SQL = "UPDATE User SET firstName = ? WHERE email = ?";
+	   jdbcTemplateObject.update(SQL, firstName, email);
+   }
 }
