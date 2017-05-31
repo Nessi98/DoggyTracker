@@ -3,10 +3,18 @@ package org.doggy.tracker;
 import java.util.List;
 import javax.sql.DataSource;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
-public class UserJDBCTemplate implements UserDAO {
+public class UserJDBCTemplate implements UserDAO, UserDetailsService {
 	
 	private JdbcTemplate jdbcTemplateObject;
+	
+	@Override
+		public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+			return getUser(username);
+		}
 	   
 	public void setDataSource(DataSource dataSource) {
 		this.jdbcTemplateObject = new JdbcTemplate(dataSource);

@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 @RequestMapping(value = "/addDevice")
-public class AddDeviceController {
+public class AddDeviceController extends BaseController{
 	
 	@RequestMapping(method = RequestMethod.GET)
 	public String addDevice(){

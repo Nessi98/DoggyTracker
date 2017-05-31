@@ -3,8 +3,7 @@ package org.doggy.tracker;
 import java.util.List;
 
 import org.apache.commons.validator.routines.EmailValidator;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.encoding.Md5PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,6 +12,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 @RequestMapping(value = "/registration")
 public class RegistrationController {
+	
+	@Autowired
+	private UserJDBCTemplate userJDBCTemplate;
 	
 	@RequestMapping(method = RequestMethod.GET)
 	public String registration(){
@@ -38,11 +40,7 @@ public class RegistrationController {
 		if(email.isEmpty() || !EmailValidator.getInstance().isValid(email)){
 			return "error";
 		}
-		
-		ApplicationContext context = new ClassPathXmlApplicationContext("Beans.xml");
-		UserJDBCTemplate userJDBCTemplate = (UserJDBCTemplate)context.getBean("userJDBCTemplate");
-		
-		//User user = userJDBCTemplate.getUser(email);
+
 		List<User> users = userJDBCTemplate.listUsers();
 		
 		for (User user : users) {
@@ -52,7 +50,6 @@ public class RegistrationController {
 			((ClassPathXmlApplicationContext)context).close();
 			return "error";
 		}*/
-			((ClassPathXmlApplicationContext)context).close();
 		     return "error";
 			}
 		}
@@ -61,7 +58,6 @@ public class RegistrationController {
         String securePass = encoderMD5.encodePassword(password, null);
         
         userJDBCTemplate.create(firstName, lastName, email, securePass);
-        ((ClassPathXmlApplicationContext)context).close();
         
         return "redirect:/home";
 	}
