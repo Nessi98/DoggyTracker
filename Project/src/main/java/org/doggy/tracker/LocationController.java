@@ -17,36 +17,40 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class LocationController {
 
 	@RequestMapping(method = RequestMethod.GET)
-    public void location( @RequestParam(value = "IMEI") String imei,
-    		@RequestParam(value = "Description") String batteryLevel,
-            @RequestParam(value = "GPS") List<String> params, HttpServletResponse response)  throws ServletException, IOException{
+    public void location( @RequestParam(required = false, value = "IMEI") String imei,
+    		@RequestParam(required = false, value = "Description") String batteryLevel,
+            @RequestParam(required = false, value = "GPS") List<String> params, HttpServletResponse response)  throws ServletException, IOException{
 		
-		ApplicationContext context = new ClassPathXmlApplicationContext("Beans.xml");
-		DeviceJDBCTemplate deviceJDBCTemplate = (DeviceJDBCTemplate)context.getBean("deviceJDBCTemplate");
-		DeviceReportJDBCTemplate deviceJReportDBCTemplate = (DeviceReportJDBCTemplate)context.getBean("deviceReportJDBCTemplate");
+		//ApplicationContext context = new ClassPathXmlApplicationContext("Beans.xml");
+		//DeviceJDBCTemplate deviceJDBCTemplate = (DeviceJDBCTemplate)context.getBean("deviceJDBCTemplate");
+		//DeviceReportJDBCTemplate deviceReportJDBCTemplate = (DeviceReportJDBCTemplate)context.getBean("deviceReportJDBCTemplate");
 		
-		String lat = params.get(3);
-		String lon = params.get(5);
+		String lat, lon;
+		float latitude = 33.234f;
+		float longitude = 33f;
 		
-		float latitude = Float.parseFloat(lat);
-		float longitude = Float.parseFloat(lon);
+		//Device device = deviceJDBCTemplate.getDevice(imei);
+		//DeviceReport deviceReport = deviceReportJDBCTemplate.getDeviceReport(device.getId());
 		
-		int remainder = (int)latitude / 100;
-		latitude = remainder + ((latitude - remainder * 100)/60);
+		System.out.print("Param 3: " + params.get(3));
 		
-		remainder = (int)longitude / 100;
-		longitude = remainder + ((longitude - remainder * 100)/60);
+		/*if(!params.get(3).equals(null) && !params.get(5).equals(null)){
+			lat = params.get(3);
+			lon = params.get(5);
+		 
+			latitude = Float.parseFloat(lat);
+			longitude = Float.parseFloat(lon);
+			
+			int remainder = (int)latitude / 100;
+			latitude = remainder + ((latitude - remainder * 100)/60);
+			
+			remainder = (int)longitude / 100;
+			longitude = remainder + ((longitude - remainder * 100)/60);
+		}*/
 		
-		Device device = deviceJDBCTemplate.getDevice(imei);
-		DeviceReport deviceReport = deviceJReportDBCTemplate.getDeviceReport(device.getId());
+		//deviceReportJDBCTemplate.update(device.getId(), latitude, longitude, batteryLevel);
 		
-		if(deviceReport == null){
-			deviceJReportDBCTemplate.create(device.getId(), latitude, longitude, batteryLevel);
-		}else{
-			deviceJReportDBCTemplate.update(device.getId(), latitude, longitude, batteryLevel);
-		}
-		
-		((ClassPathXmlApplicationContext)context).close();
+		//((ClassPathXmlApplicationContext)context).close();
 		
 		PrintWriter writer = response.getWriter();
 		

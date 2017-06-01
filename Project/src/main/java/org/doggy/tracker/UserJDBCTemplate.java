@@ -29,7 +29,6 @@ public class UserJDBCTemplate implements UserDAO, UserDetailsService {
 
    public User getUser(String email) {
       String SQL = "SELECT * FROM User WHERE email = ?";
-
       User user = jdbcTemplateObject.queryForObject(SQL, new Object[]{email}, new UserMapper());
 
       return user;
@@ -66,5 +65,10 @@ public class UserJDBCTemplate implements UserDAO, UserDetailsService {
    public void updateByFirstName(String firstName,String email) {
 	   String SQL = "UPDATE User SET firstName = ? WHERE email = ?";
 	   jdbcTemplateObject.update(SQL, firstName, email);
+   }
+   
+   public void updateByLastName(String lastName,String email) {
+	   String SQL = "UPDATE User SET lastName = ? WHERE email = ?";
+	   jdbcTemplateObject.update(SQL, lastName, email);
    }
 }

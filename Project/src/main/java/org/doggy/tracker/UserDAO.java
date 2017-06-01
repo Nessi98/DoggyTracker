@@ -20,4 +20,6 @@ public interface UserDAO {
 	   public void updateByPassword(String newPassword, String email);
 	   
 	   public void updateByFirstName(String firstName, String email);
+	   
+	   public void updateByLastName(String lastName, String email);
 }

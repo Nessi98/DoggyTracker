@@ -2,6 +2,7 @@ package org.doggy.tracker;
 
 import org.apache.commons.validator.routines.EmailValidator;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.encoding.Md5PasswordEncoder;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -22,7 +23,7 @@ public class AccountSettingsController extends BaseController {
 	}
 		
 	@RequestMapping(method = RequestMethod.POST)
-	public String processAccountSettings(String newFirstName, String newPassword, String newEmail, ModelMap model) {
+	public String processAccountSettings(String newFirstName, String newLastName, String newPassword, String newEmail, ModelMap model) {
 				
 		Authentication authentication = getUser();
         String currentPrincipalName = authentication.getName();
@@ -30,11 +31,18 @@ public class AccountSettingsController extends BaseController {
 		User user = userJDBCTemplate.getUser(currentPrincipalName);
 				
 		if(!newPassword.equals("")){
-			userJDBCTemplate.updateByPassword(newPassword, user.getEmail());
+			Md5PasswordEncoder encoderMD5 = new Md5PasswordEncoder();
+	        String securePass = encoderMD5.encodePassword(newPassword, null);
+	        
+			userJDBCTemplate.updateByPassword(securePass, user.getEmail());
 		}
 		
 		if(!newEmail.equals("") && EmailValidator.getInstance().isValid(newEmail)){
 			userJDBCTemplate.updateByEmail(newEmail, user.getEmail());
+		}
+		
+		if(!newLastName.equals("")){
+			userJDBCTemplate.updateByLastName(newLastName, user.getEmail());
 		}
 		
 		if(!newFirstName.equals("")){
